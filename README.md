@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Orpheus — Designer Portfolio
 
-## Getting Started
+A pixel-faithful build of the *Orpheus — Designer Portfolio (Sculpture Avatars
+& Community)* Figma file, in both its dark and light themes.
 
-First, run the development server:
+Layout, type sizes, letter-spacing and colour were measured off the 1728px
+artboard and its exported renders, so the desktop view lines up with the design
+one-to-one and scales down cleanly from there.
+
+## Stack
+
+| | |
+| --- | --- |
+| Framework | Next.js 16 (App Router, Turbopack) + React 19 |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 — CSS-first `@theme`, no config file |
+| Animation | Motion (`motion/react`) |
+| Carousel | Embla Carousel |
+| Theming | `next-themes`, class strategy |
+| Icons | `lucide-react` (UI) + `react-icons` (brands) |
+| Fonts | Cormorant Garamond + Poppins via `next/font` |
+
+## Getting started
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open <http://localhost:3000>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project layout
 
-## Learn More
+```
+src/
+  app/
+    globals.css        design tokens, theme variables, shared utilities
+    layout.tsx         fonts, metadata, theme provider
+    page.tsx           section composition
+  components/
+    decor/             ambient background glows
+    layout/            navbar, logo, theme toggle, mobile drawer
+    sections/          hero, works, contribution, connect
+    ui/                buttons, section title, work card, banner, reveal
+  lib/
+    content.ts         all copy and asset references
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Design tokens
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`src/app/globals.css` holds the whole system. `:root` carries the light theme
+and `.dark` overrides it, so every colour resolves through one variable:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `--gold-100 … --gold-600` — the metallic ramp sampled from the Figma
+  gradients, used by `text-gold-gradient` and `bg-gold-gradient`
+- `--bg`, `--fg`, `--fg-muted`, `--panel`, `--panel-alt`, `--hairline`
+- `--glow-left`, `--glow-right` — the ambient ellipses behind the header
+- `--art-blend` — how the hero artwork keys into the page (`screen` in dark,
+  `multiply` in light)
+- `--gutter`, `--gutter-nav`, `--page-max` — the artboard's own spacing
 
-## Deploy on Vercel
+## Editing content
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Copy, navigation, work cards, banners and social links all live in
+`src/lib/content.ts`. Images live in `public/images` — see the
+[asset notes](public/images/README.md) for the export sizes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Accessibility
+
+Semantic landmarks throughout, visible focus rings on the gold accent, an
+Escape-and-backdrop-dismissable mobile drawer with scroll lock, and every
+entrance animation disabled under `prefers-reduced-motion`.
