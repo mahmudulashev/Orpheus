@@ -64,46 +64,36 @@ export function Hero() {
 }
 
 /**
- * Both plates sit at their Figma coordinates on the 1728 artboard. The dark
- * plate is composed from two transparent exports so the gold linework stays
- * crisp; the light plate is the single composite Figma produces, keyed into
- * the page with `multiply` because its own backdrop is white.
+ * Each plate is a single image with intrinsic dimensions, positioned by its
+ * Figma coordinates on the 1728 artboard. Intrinsic sizing keeps the height
+ * definite in every browser — percentage heights inside an aspect-ratio box
+ * collapse to zero in Safari.
  */
 function HeroArt() {
   return (
     <>
-      <ArtStage className="aspect-[794.6/749] md:top-[118px] md:left-[47.593%] md:w-[45.984%] dark:hidden">
+      <ArtStage className="md:top-[118px] md:left-[47.593%] md:w-[45.984%] dark:hidden">
         <Image
           src="/images/hero-light.png"
           alt=""
-          fill
+          width={797}
+          height={749}
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-contain"
+          className="h-auto w-full"
         />
       </ArtStage>
 
-      <ArtStage className="hidden aspect-[875.2/737] md:top-[130px] md:left-[42.94%] md:w-[50.648%] dark:block">
-        <span className="absolute inset-y-0 left-[0.366%] block w-[99.749%]">
-          <Image
-            src="/images/hero-decor.png"
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain"
-          />
-        </span>
-        <span className="absolute top-[4.885%] left-[0.731%] block h-[95.115%] w-[97.829%]">
-          <Image
-            src="/images/hero-statue-dark.png"
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-contain"
-          />
-        </span>
+      <ArtStage className="hidden md:top-[130px] md:left-[42.94%] md:w-[50.648%] dark:block">
+        <Image
+          src="/images/hero-art-dark.png"
+          alt=""
+          width={1750}
+          height={1474}
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="h-auto w-full"
+        />
       </ArtStage>
     </>
   );
@@ -127,7 +117,7 @@ function ArtStage({
       <motion.div
         animate={{ y: [0, -12, 0] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        className="relative size-full"
+        className="relative w-full"
       >
         {children}
       </motion.div>

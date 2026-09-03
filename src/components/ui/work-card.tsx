@@ -8,15 +8,16 @@ export function WorkCard({ work, priority }: { work: Work; priority?: boolean })
   return (
     <Link
       href={work.href}
-      className="group relative block aspect-[450/337.5] w-full overflow-hidden bg-panel outline-1 -outline-offset-1 outline-transparent transition-[outline-color] duration-300 hover:outline-[color-mix(in_srgb,var(--gold-300)_70%,transparent)]"
+      className="group relative block w-full overflow-hidden bg-panel outline-1 -outline-offset-1 outline-transparent transition-[outline-color] duration-300 hover:outline-[color-mix(in_srgb,var(--gold-300)_70%,transparent)]"
     >
       <Image
         src={work.image}
         alt={`${work.title} — ${work.tag}`}
-        fill
+        width={900}
+        height={675}
         sizes="(max-width: 640px) 88vw, (max-width: 1100px) 45vw, 450px"
         priority={priority}
-        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+        className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.06]"
       />
 
       <div className="absolute inset-x-0 bottom-0 flex h-[48px] items-center bg-[var(--caption-scrim)] px-[14px] backdrop-blur-[2px] md:h-[58px] md:px-[20px]">

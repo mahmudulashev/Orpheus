@@ -6,8 +6,7 @@ stays the same — no code changes needed.
 
 | File | Source export | Size | Notes |
 | --- | --- | --- | --- |
-| `hero-decor.png` | `Full Hero.png` | 1746 × 1474 (2x) | Gold frame and chevron pattern, transparent. Shared by both themes. |
-| `hero-statue-dark.png` | `statue-skull-…wallpaper 1.png` | 1713 × 1402 (2x) | Dark statue cut-out, transparent. |
+| `hero-art-dark.png` | `Full Hero.png` + `statue-skull-…wallpaper 1.png` | 1750 × 1474 (2x) | The decor plate at (6, 0) and the statue cut-out at (13, 72) on one transparent canvas the size of the Figma stage. |
 | `hero-light.png` | `FULL.png` | 797 × 749 (1x) | Light composite. Its flat white backdrop is flood-filled to transparent so the page's ambient glow stays visible behind it. |
 | `logo-mark-dark.png` | `Logo.png`, left 82px | 82 × 89 (2x) | Medallion only; the wordmark is live text. |
 | `logo-mark-light.png` | `Logo.png`, left 82px | 82 × 89 (2x) | Same mark with the white linework re-inked; the gold ring is untouched. |
@@ -22,9 +21,11 @@ The hero plates are positioned by their coordinates on the 1728px artboard,
 not by eye:
 
 - stage (dark): x 742 → 1617.2, y 130 → 867
-- decor inside it: x 745.2, full height
-- statue inside it: x 748.4 → 1604.6, y 166 → 867
 - stage (light): x 822.4 → 1617, y 118 → 867
+
+Every plate is a single image with intrinsic `width`/`height`, never a
+percentage-sized box — a percentage height inside an `aspect-ratio` parent
+collapses to zero in Safari and the artwork disappears.
 
 If you re-export a plate, keep its bounding box identical or the offsets in
 `src/components/sections/hero.tsx` need updating alongside it.
