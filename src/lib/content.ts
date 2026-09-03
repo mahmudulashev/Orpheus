@@ -119,8 +119,8 @@ export const banners: BannerContent[] = [
     ],
     tracking: { title: "0.081em", subtitle: "0.523em" },
     cta: { label: "Download", href: "#community" },
-    imageDark: "/images/banner-avatars-dark.jpg",
-    imageLight: "/images/banner-avatars-light.jpg",
+    imageDark: "/images/banner-avatars.png",
+    imageLight: "/images/banner-avatars.png",
     align: "media-right",
   },
 ];

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Poppins } from "next/font/google";
 
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import { AppProviders } from "@/components/providers/app-providers";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -44,14 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorant.variable} ${poppins.variable} h-full`}
     >
       <body className="min-h-full">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

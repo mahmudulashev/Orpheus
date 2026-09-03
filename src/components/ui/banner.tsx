@@ -95,14 +95,17 @@ function BannerMedia({
       : "linear-gradient(to left, #000 58%, transparent 100%)",
   } as CSSProperties;
 
-  return (
-    <>
-      {(
-        [
+  const plates =
+    banner.imageLight === banner.imageDark
+      ? ([[banner.imageDark, ""]] as const)
+      : ([
           [banner.imageLight, "dark:opacity-0"],
           [banner.imageDark, "opacity-0 dark:opacity-100"],
-        ] as const
-      ).map(([src, visibility]) => (
+        ] as const);
+
+  return (
+    <>
+      {plates.map(([src, visibility]) => (
         <Image
           key={src}
           src={src}

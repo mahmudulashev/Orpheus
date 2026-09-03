@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { useEffect } from "react";
@@ -21,8 +21,6 @@ export function MobileMenu({
   open: boolean;
   onClose: () => void;
 }) {
-  const reduce = useReducedMotion();
-
   useEffect(() => {
     if (!open) return;
 
@@ -64,7 +62,7 @@ export function MobileMenu({
             aria-modal="true"
             aria-label="Menu"
             variants={{
-              hidden: { x: reduce ? 0 : "100%", opacity: reduce ? 0 : 1 },
+              hidden: { x: "100%", opacity: 1 },
               visible: { x: 0, opacity: 1 },
             }}
             transition={{ duration: 0.42, ease: EASE }}
@@ -88,7 +86,7 @@ export function MobileMenu({
                   <motion.li
                     key={item.href}
                     variants={{
-                      hidden: { opacity: 0, x: reduce ? 0 : 24 },
+                      hidden: { opacity: 0, x: 24 },
                       visible: { opacity: 1, x: 0 },
                     }}
                     transition={{
