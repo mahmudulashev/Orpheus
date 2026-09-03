@@ -2,7 +2,7 @@
 
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 
 import { SectionTitle } from "@/components/ui/section-title";
 import { WorkCard } from "@/components/ui/work-card";
@@ -10,8 +10,8 @@ import { works } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 /**
- * Figma: "Works" — right-aligned section title over a carousel that bleeds
- * past the right edge of the page.
+ * Figma: "Works" — right-aligned section title over a carousel of 450 × 337.5
+ * cards spaced 84px apart, bleeding past the right edge of the page.
  */
 export function Works() {
   const [emblaRef, embla] = useEmblaCarousel({
@@ -19,20 +19,31 @@ export function Works() {
     containScroll: "trimSnaps",
     dragFree: true,
   });
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(false);
 
-  const sync = useCallback(() => {
-    if (!embla) return;
-    setCanPrev(embla.canScrollPrev());
-    setCanNext(embla.canScrollNext());
-  }, [embla]);
+  const subscribe = useCallback(
+    (onChange: () => void) => {
+      if (!embla) return () => {};
+      embla.on("select", onChange).on("reInit", onChange).on("settle", onChange);
+      return () => {
+        embla
+          .off("select", onChange)
+          .off("reInit", onChange)
+          .off("settle", onChange);
+      };
+    },
+    [embla],
+  );
 
-  useEffect(() => {
-    if (!embla) return;
-    sync();
-    embla.on("select", sync).on("reInit", sync).on("settle", sync);
-  }, [embla, sync]);
+  const canPrev = useSyncExternalStore(
+    subscribe,
+    () => embla?.canScrollPrev() ?? false,
+    () => false,
+  );
+  const canNext = useSyncExternalStore(
+    subscribe,
+    () => embla?.canScrollNext() ?? false,
+    () => false,
+  );
 
   return (
     <section id="works" className="pt-[80px]">
@@ -60,10 +71,7 @@ export function Works() {
       <div className="mt-[13px] overflow-hidden pl-[var(--gutter)]" ref={emblaRef}>
         <div className="flex gap-[84px] py-[23px]">
           {works.map((work, i) => (
-            <div
-              key={work.id}
-              className="min-w-0 shrink-0 basis-[min(450px,80vw)]"
-            >
+            <div key={work.id} className="min-w-0 shrink-0 basis-[min(450px,80vw)]">
               <WorkCard work={work} priority={i < 3} />
             </div>
           ))}

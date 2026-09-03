@@ -3,23 +3,22 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+
+import { useHydrated } from "@/lib/use-hydrated";
 
 /** Figma: "Sun" / "moon" — 29px icon toggle at the end of the nav. */
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const hydrated = useHydrated();
 
-  useEffect(() => setMounted(true), []);
-
-  const isDark = mounted && resolvedTheme === "dark";
+  const isDark = hydrated && resolvedTheme === "dark";
 
   return (
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={
-        mounted
+        hydrated
           ? isDark
             ? "Switch to light theme"
             : "Switch to dark theme"
@@ -28,7 +27,7 @@ export function ThemeToggle() {
       className="relative grid size-[29px] place-items-center text-fg transition-colors duration-300 hover:text-[var(--gold-300)]"
     >
       <AnimatePresence initial={false} mode="wait">
-        {mounted ? (
+        {hydrated ? (
           <motion.span
             key={isDark ? "sun" : "moon"}
             initial={{ opacity: 0, rotate: -90, scale: 0.6 }}

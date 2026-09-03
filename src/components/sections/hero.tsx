@@ -35,7 +35,7 @@ export function Hero() {
             <div className="mt-[37px] flex flex-wrap items-center gap-[20px] md:gap-[56px]">
               <GoldOutlineButton
                 href={hero.secondary.href}
-                className="w-[180px]"
+                className="w-[160px] md:w-[180px]"
                 iconRight={
                   <ChevronDown
                     className="size-[16px] transition-transform duration-300 group-hover:translate-y-[2px]"
@@ -46,7 +46,7 @@ export function Hero() {
                 {hero.secondary.label}
               </GoldOutlineButton>
 
-              <GoldButton href={hero.primary.href} className="w-[170px]">
+              <GoldButton href={hero.primary.href} className="w-[150px] md:w-[170px]">
                 {hero.primary.label}
               </GoldButton>
             </div>
