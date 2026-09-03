@@ -16,10 +16,10 @@ export function Hero() {
         {/* Artwork — Figma places it at x 760→1618, y 118→873 on a 1728 canvas. */}
         <HeroArt />
 
-        <div className="relative z-10 flex max-w-[552px] flex-col pt-[190px] md:absolute md:top-[328px] md:pt-0">
+        <div className="relative z-10 flex max-w-[568px] flex-col pt-[190px] md:absolute md:top-[328px] md:pt-0">
           <Reveal immediate delay={0.1}>
             <h1 className="font-serif font-semibold text-gold-gradient">
-              <span className="block text-[clamp(38px,4.34vw,75px)] leading-[1.12] tracking-[0.052em] [font-variant:small-caps]">
+              <span className="block text-[clamp(38px,4.34vw,75px)] leading-[1.12] tracking-[0.052em] whitespace-nowrap [font-variant:small-caps]">
                 {hero.eyebrow}
               </span>
               <span className="block text-[clamp(42px,4.86vw,84px)] leading-[1] tracking-[0.315em] uppercase">
@@ -29,7 +29,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal immediate delay={0.22}>
-            <p className="mt-[37px] max-w-[552px] text-[clamp(16px,1.16vw,20px)] leading-[2.5] tracking-[0.092em] text-fg-muted">
+            <p className="mt-[37px] max-w-[568px] text-[clamp(16px,1.16vw,20px)] leading-[2.5] tracking-[0.092em] text-fg-muted">
               {hero.body}
             </p>
           </Reveal>
