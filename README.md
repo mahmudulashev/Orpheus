@@ -6,6 +6,8 @@
 
 Dark and light themes, measured off the 1728px artboard down to the letter-spacing.
 
+**[View the live site →](https://orpheus-dusky.vercel.app)**
+
 <br />
 
 ![Orpheus hero, dark theme](docs/preview-dark.png)
@@ -17,6 +19,7 @@ Dark and light themes, measured off the 1728px artboard down to the letter-spaci
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Motion](https://img.shields.io/badge/Motion-12-FFE01B?style=flat-square)](https://motion.dev)
+[![Live on Vercel](https://img.shields.io/badge/Live-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)](https://orpheus-dusky.vercel.app)
 
 </div>
 
@@ -123,6 +126,11 @@ and `.dark` overrides it:
 Copy, navigation, work cards, banners and social links all live in
 `src/lib/content.ts`. Images live in `public/images` — see the
 [asset notes](public/images/README.md) for export sizes and hero placement.
+
+## Deployment
+
+Hosted on Vercel and linked to this repository — every push to `main` ships a
+new production build automatically.
 
 ## Accessibility
 
