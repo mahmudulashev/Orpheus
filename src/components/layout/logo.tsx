@@ -24,7 +24,7 @@ export function Logo() {
           className="size-full rounded-full object-cover"
         />
       </span>
-      <span className="font-serif text-[29px] leading-none font-semibold tracking-[0.05em] text-fg [font-variant:small-caps]">
+      <span className="font-serif text-[29px] leading-none font-bold tracking-[0.052em] text-fg [font-variant:small-caps]">
         {site.name}
       </span>
     </Link>

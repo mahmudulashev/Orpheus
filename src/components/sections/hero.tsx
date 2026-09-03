@@ -22,14 +22,14 @@ export function Hero() {
               <span className="block text-[clamp(38px,4.34vw,75px)] leading-[1.12] tracking-[0.052em] whitespace-nowrap [font-variant:small-caps]">
                 {hero.eyebrow}
               </span>
-              <span className="block text-[clamp(42px,4.86vw,84px)] leading-[1] tracking-[0.315em] uppercase">
+              <span className="block text-[clamp(42px,4.86vw,84px)] leading-[1] tracking-[0.3275em] uppercase">
                 {hero.title}
               </span>
             </h1>
           </Reveal>
 
           <Reveal immediate delay={0.22}>
-            <p className="mt-[37px] max-w-[568px] text-[clamp(16px,1.16vw,20px)] leading-[2.5] tracking-[0.092em] text-fg-muted">
+            <p className="mt-[41px] max-w-[568px] text-[clamp(16px,1.16vw,20px)] leading-[2.5] tracking-[0.092em] text-fg-muted">
               {hero.body}
             </p>
           </Reveal>

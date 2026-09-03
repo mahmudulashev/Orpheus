@@ -88,6 +88,8 @@ export type BannerContent = {
   title: string;
   /** One entry per rendered line — the Figma banners break at fixed points. */
   subtitle: SubtitleToken[][];
+  /** Per-banner letter-spacing overrides, as set on the Figma instances. */
+  tracking: { title: string; subtitle: string };
   cta: { label: string; href: string };
   imageDark: string;
   imageLight: string;
@@ -102,6 +104,7 @@ export const banners: BannerContent[] = [
       [{ text: "Over " }, { text: "200", strong: true }, { text: " Greek style" }],
       [{ text: "Sculpture" }],
     ],
+    tracking: { title: "0.126em", subtitle: "0.359em" },
     cta: { label: "Download", href: "#contribution" },
     imageDark: "/images/banner-statue-dark.jpg",
     imageLight: "/images/banner-statue-light.jpg",
@@ -114,6 +117,7 @@ export const banners: BannerContent[] = [
       [{ text: "+500 Greek style" }],
       [{ text: "User avatars", strong: true }],
     ],
+    tracking: { title: "0.059em", subtitle: "0.523em" },
     cta: { label: "Download", href: "#community" },
     imageDark: "/images/banner-avatars-dark.jpg",
     imageLight: "/images/banner-avatars-light.jpg",

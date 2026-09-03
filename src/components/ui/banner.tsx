@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Download } from "lucide-react";
+import type { CSSProperties } from "react";
 
 import { GoldButton } from "@/components/ui/button";
 import type { BannerContent } from "@/lib/content";
@@ -7,51 +8,54 @@ import { cn } from "@/lib/utils";
 
 /**
  * Figma: "Banner" — a 1496 × 434 panel. The artwork mask is 881 wide and the
- * copy frame is 706 wide, so both are placed as percentages of the panel
- * rather than split down the middle.
+ * copy frame is 706 wide sitting at x 759, so both are placed as percentages
+ * of the panel rather than split down the middle.
  */
-const MEDIA_W = "58.89%";
-const COPY_W = "47.19%";
-const COPY_OFFSET = "50.74%";
+const MEDIA_WIDTH = "58.89%";
+const COPY_WIDTH = "47.19%";
+const COPY_INSET = "50.74%";
 
 export function Banner({ banner }: { banner: BannerContent }) {
   const mediaLeft = banner.align === "media-left";
 
+  const mediaVars = { "--media-w": MEDIA_WIDTH } as CSSProperties;
+  const copyVars = {
+    "--copy-w": COPY_WIDTH,
+    "--copy-x": mediaLeft ? COPY_INSET : "0.07%",
+  } as CSSProperties;
+
   return (
     <article
       className={cn(
-        "relative isolate flex w-full flex-col overflow-hidden md:block md:h-[434px]",
+        "relative isolate w-full overflow-hidden md:h-[434px]",
         mediaLeft ? "bg-panel" : "bg-panel-alt",
       )}
     >
       <div
+        style={mediaVars}
         className={cn(
-          "relative h-[220px] w-full md:absolute md:inset-y-0 md:h-full",
+          "relative h-[220px] w-full md:absolute md:inset-y-0 md:h-auto md:w-[var(--media-w)]",
           mediaLeft ? "md:left-0" : "md:right-0",
         )}
-        style={{ ["--media-w" as string]: MEDIA_W }}
-        data-media
       >
-        <div className="absolute inset-0 md:w-[var(--media-w)] md:[&]:w-full">
-          <BannerMedia banner={banner} mediaLeft={mediaLeft} />
-        </div>
+        <BannerMedia banner={banner} mediaLeft={mediaLeft} />
       </div>
 
       <div
-        className={cn(
-          "flex flex-col items-center gap-[26px] px-[24px] py-[40px] text-center",
-          "md:absolute md:inset-y-0 md:justify-center md:px-0 md:py-0",
-        )}
-        style={{
-          width: undefined,
-        }}
-        data-copy
+        style={copyVars}
+        className="flex flex-col items-center gap-[26px] px-[24px] py-[40px] text-center md:absolute md:inset-y-0 md:start-[var(--copy-x)] md:w-[var(--copy-w)] md:justify-center md:px-0 md:py-0"
       >
-        <h3 className="text-[clamp(24px,2.315vw,40px)] leading-[1.14] font-bold tracking-[0.173em] text-[var(--gold-300)] uppercase">
+        <h3
+          style={{ letterSpacing: banner.tracking.title }}
+          className="text-[clamp(24px,2.315vw,40px)] leading-[1.14] font-bold text-[var(--gold-300)] uppercase"
+        >
           {banner.title}
         </h3>
 
-        <p className="text-[clamp(17px,1.85vw,32px)] leading-[1.52] font-light tracking-[0.40em] text-fg uppercase">
+        <p
+          style={{ letterSpacing: banner.tracking.subtitle }}
+          className="text-[clamp(17px,1.85vw,32px)] leading-[1.5625] font-light text-fg uppercase"
+        >
           {banner.subtitle.map((line, li) => (
             <span key={li} className="block">
               {line.map((token, i) =>

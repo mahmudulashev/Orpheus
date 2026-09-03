@@ -27,17 +27,17 @@ export function Connect() {
   return (
     <footer
       id="connect"
-      className="container-page flex flex-col items-center pt-[165px] pb-[120px] text-center"
+      className="container-page flex flex-col items-center pt-[169px] pb-[120px] text-center"
     >
       <h2 className="text-[25px] leading-[1.2] font-bold tracking-[0.166em] text-[var(--gold-300)] uppercase">
         {connect.title}
       </h2>
 
-      <p className="mt-[24px] max-w-[565px] text-[16px] leading-[1.4] tracking-[0.15em] text-fg uppercase">
+      <p className="mt-[30px] max-w-[600px] text-[16px] leading-[1.4] tracking-[0.15em] text-fg uppercase">
         {connect.body}
       </p>
 
-      <ul className="mt-[32px] flex flex-wrap items-center justify-center gap-[32px]">
+      <ul className="mt-[38px] flex flex-wrap items-center justify-center gap-[30px]">
         {socials.map((social) => {
           const Icon = icons[social.id];
           return (
