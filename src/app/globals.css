@@ -139,9 +139,24 @@
   );
 }
 
-/* The hero artwork keys itself into the page background, so no visible seam */
+/* The hero artwork keys itself into the page background, so no visible seam:
+   the blend mode drops the plate's own backdrop and the feathered mask hides
+   the plate's edges. */
 @utility art-keyed {
+  --feather: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 5%,
+      #000 97%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom, transparent 0%, #000 4%, #000 98%, transparent 100%);
+
   mix-blend-mode: var(--art-blend);
+  mask-image: var(--feather);
+  -webkit-mask-image: var(--feather);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
 }
 
 @media (prefers-reduced-motion: reduce) {

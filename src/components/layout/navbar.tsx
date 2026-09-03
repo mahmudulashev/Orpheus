@@ -1,11 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "motion/react";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { Logo } from "@/components/layout/logo";
+import { MobileMenu } from "@/components/layout/mobile-menu";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { navItems } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -18,66 +18,78 @@ export function Navbar() {
 
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
 
+  const close = useCallback(() => setOpen(false), []);
+
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-300",
-        scrolled &&
-          "bg-[var(--nav-bg)] shadow-[0_1px_0_0_var(--hairline)] backdrop-blur-xl",
-      )}
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-300",
+          scrolled &&
+            "bg-[var(--nav-bg)] shadow-[0_1px_0_0_var(--hairline)] backdrop-blur-xl",
+        )}
+      >
+        <nav className="container-nav flex h-[96px] items-center justify-between pt-[22px]">
+          <Logo />
+
+          <div className="hidden items-center gap-[51px] lg:flex">
+            {navItems.map((item) => (
+              <NavLink key={item.href} href={item.href}>
+                {item.label}
+              </NavLink>
+            ))}
+            <ThemeToggle />
+          </div>
+
+          <div className="flex items-center gap-[18px] lg:hidden">
+            <ThemeToggle />
+            <MenuButton open={open} onClick={() => setOpen((v) => !v)} />
+          </div>
+        </nav>
+      </header>
+
+      <MobileMenu open={open} onClose={close} />
+    </>
+  );
+}
+
+/** Three rules that collapse into an X while the drawer is open. */
+function MenuButton({ open, onClick }: { open: boolean; onClick: () => void }) {
+  const rules = [
+    { y: -7, rotate: 45, width: "100%" },
+    { y: 0, rotate: 0, width: "70%" },
+    { y: 7, rotate: -45, width: "100%" },
+  ];
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={open ? "Close menu" : "Open menu"}
+      aria-expanded={open}
+      className="group relative grid size-[32px] place-items-center"
     >
-      <nav className="container-nav flex h-[96px] items-center justify-between pt-[22px]">
-        <Logo />
-
-        <div className="hidden items-center gap-[51px] lg:flex">
-          {navItems.map((item) => (
-            <NavLink key={item.href} href={item.href}>
-              {item.label}
-            </NavLink>
-          ))}
-          <ThemeToggle />
-        </div>
-
-        <div className="flex items-center gap-4 lg:hidden">
-          <ThemeToggle />
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            className="grid size-[36px] place-items-center text-fg"
-          >
-            {open ? <X className="size-6" /> : <Menu className="size-6" />}
-          </button>
-        </div>
-      </nav>
-
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-hairline bg-[var(--nav-bg)] backdrop-blur-xl lg:hidden"
-          >
-            <ul className="container-nav flex flex-col gap-1 py-4">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="block py-3 font-serif text-[22px] tracking-[0.02em] text-fg [font-variant:small-caps]"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </header>
+      <span className="relative block h-[16px] w-[26px]">
+        {rules.map((rule, i) => (
+          <motion.span
+            key={i}
+            initial={false}
+            animate={
+              open
+                ? {
+                    y: 0,
+                    rotate: i === 1 ? 0 : rule.rotate,
+                    opacity: i === 1 ? 0 : 1,
+                    width: "100%",
+                  }
+                : { y: rule.y, rotate: 0, opacity: 1, width: rule.width }
+            }
+            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-1/2 right-0 block h-[1.5px] -translate-y-1/2 rounded-full bg-fg transition-colors duration-300 group-hover:bg-[var(--gold-300)]"
+          />
+        ))}
+      </span>
+    </button>
   );
 }
 
