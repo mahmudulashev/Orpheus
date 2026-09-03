@@ -86,9 +86,14 @@ function BannerMedia({
   banner: BannerContent;
   mediaLeft: boolean;
 }) {
-  const fade = mediaLeft
-    ? "linear-gradient(to right, #000 58%, transparent 100%)"
-    : "linear-gradient(to left, #000 58%, transparent 100%)";
+  // Stacked on small screens the artwork sits above the copy, so it fades
+  // downwards; side by side it fades towards the copy instead.
+  const fadeVars = {
+    "--fade-stacked": "linear-gradient(to bottom, #000 58%, transparent 100%)",
+    "--fade-side": mediaLeft
+      ? "linear-gradient(to right, #000 58%, transparent 100%)"
+      : "linear-gradient(to left, #000 58%, transparent 100%)",
+  } as CSSProperties;
 
   return (
     <>
@@ -105,8 +110,12 @@ function BannerMedia({
           aria-hidden
           fill
           sizes="(max-width: 768px) 100vw, 59vw"
-          style={{ maskImage: fade, WebkitMaskImage: fade }}
-          className={cn("object-cover transition-opacity duration-500", visibility)}
+          style={fadeVars}
+          className={cn(
+            "object-cover transition-opacity duration-500",
+            "[mask-image:var(--fade-stacked)] md:[mask-image:var(--fade-side)]",
+            visibility,
+          )}
         />
       ))}
     </>

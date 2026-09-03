@@ -19,8 +19,8 @@ export function WorkCard({ work, priority }: { work: Work; priority?: boolean })
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
       />
 
-      <div className="absolute inset-x-0 bottom-0 flex h-[58px] items-center bg-[var(--caption-scrim)] px-[20px] backdrop-blur-[2px]">
-        <p className="truncate text-[16px] tracking-[0.107em] text-white/90">
+      <div className="absolute inset-x-0 bottom-0 flex h-[48px] items-center bg-[var(--caption-scrim)] px-[14px] backdrop-blur-[2px] md:h-[58px] md:px-[20px]">
+        <p className="truncate text-[13px] tracking-[0.04em] text-white/90 md:text-[16px] md:tracking-[0.107em]">
           {work.title} -{" "}
           <span className="font-semibold text-white">{work.tag}</span>
         </p>

@@ -46,9 +46,9 @@ export function Works() {
   );
 
   return (
-    <section id="works" className="pt-[80px]">
-      <div className="container-page flex flex-wrap items-center justify-between gap-6">
-        <div className="order-2 flex items-center gap-[12px] md:order-1">
+    <section id="works" className="pt-[40px] md:pt-[80px]">
+      <div className="container-page flex items-center justify-between gap-4">
+        <div className="order-2 flex items-center gap-[8px] md:order-1 md:gap-[12px]">
           <CarouselButton
             direction="prev"
             disabled={!canPrev}
@@ -63,13 +63,13 @@ export function Works() {
         <SectionTitle
           title="Recent NFT"
           href="#works"
-          className="order-1 ml-auto md:order-2"
+          className="order-1 mr-auto md:order-2 md:mr-0 md:ml-auto"
         />
       </div>
 
       {/* Full-bleed viewport, padded to the page gutter on the left only. */}
-      <div className="mt-[13px] overflow-hidden pl-[var(--gutter)]" ref={emblaRef}>
-        <div className="flex gap-[84px] py-[23px]">
+      <div className="mt-[10px] overflow-hidden pl-[var(--gutter)] md:mt-[13px]" ref={emblaRef}>
+        <div className="flex gap-[24px] py-[16px] md:gap-[84px] md:py-[23px]">
           {works.map((work, i) => (
             <div key={work.id} className="min-w-0 shrink-0 basis-[min(450px,80vw)]">
               <WorkCard work={work} priority={i < 3} />
@@ -98,7 +98,7 @@ function CarouselButton({
       disabled={disabled}
       aria-label={direction === "prev" ? "Previous works" : "Next works"}
       className={cn(
-        "grid size-[44px] place-items-center rounded-full border transition-all duration-300",
+        "grid size-[38px] place-items-center rounded-full border transition-all duration-300 md:size-[44px]",
         "border-[color-mix(in_srgb,var(--gold-300)_35%,transparent)] text-[var(--gold-300)]",
         "hover:border-[var(--gold-300)] hover:bg-[color-mix(in_srgb,var(--gold-300)_12%,transparent)]",
         "disabled:pointer-events-none disabled:opacity-30",

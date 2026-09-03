@@ -12,8 +12,8 @@ import { hero } from "@/lib/content";
 export function Hero() {
   return (
     <section className="relative">
-      <div className="container-page relative pb-[64px] md:h-[872px] md:pb-0">
-        <div className="relative z-10 flex max-w-[600px] flex-col pt-[170px] md:absolute md:top-[328px] md:pt-0">
+      <div className="container-page relative pb-[8px] md:h-[872px] md:pb-0">
+        <div className="relative z-10 flex max-w-[600px] flex-col pt-[150px] md:absolute md:top-[328px] md:pt-0">
           <Reveal immediate delay={0.1}>
             <h1 className="font-serif font-semibold text-gold-gradient">
               <span className="block text-[clamp(34px,4.34vw,75px)] leading-[1.12] tracking-[0.052em] whitespace-nowrap [font-variant:small-caps]">
@@ -69,7 +69,7 @@ function HeroArt() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
       aria-hidden
-      className="pointer-events-none mt-[40px] w-full md:absolute md:top-[118px] md:left-[43.98%] md:mt-0 md:w-[49.65%]"
+      className="pointer-events-none mt-[32px] w-full md:absolute md:top-[118px] md:left-[43.98%] md:mt-0 md:w-[49.65%]"
     >
       <motion.div
         animate={reduce ? undefined : { y: [0, -12, 0] }}
