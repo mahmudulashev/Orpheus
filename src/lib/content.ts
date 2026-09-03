@@ -10,6 +10,11 @@ export const site = {
     "Product & Graphic Designer, with experience in delivering end-to-end UX/UI design for software products.",
 } as const;
 
+export const author = {
+  name: "Mahmud Ulashev",
+  url: "https://ulashev.uz",
+} as const;
+
 export type NavItem = { label: string; href: string };
 
 export const navItems: NavItem[] = [
@@ -126,17 +131,15 @@ export const banners: BannerContent[] = [
 ];
 
 export type Social = {
-  id: "linkedin" | "dribbble" | "instagram" | "medium" | "mail";
+  id: "telegram" | "github" | "portfolio";
   label: string;
   href: string;
 };
 
 export const socials: Social[] = [
-  { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com" },
-  { id: "dribbble", label: "Dribbble", href: "https://dribbble.com" },
-  { id: "instagram", label: "Instagram", href: "https://www.instagram.com" },
-  { id: "medium", label: "Medium", href: "https://medium.com" },
-  { id: "mail", label: "Email", href: "mailto:hello@orpheus.design" },
+  { id: "telegram", label: "Telegram", href: "https://t.me/mahmud_ulashev" },
+  { id: "github", label: "GitHub", href: "https://github.com/mahmudulashev" },
+  { id: "portfolio", label: "Portfolio", href: "https://ulashev.uz" },
 ];
 
 export const connect = {
