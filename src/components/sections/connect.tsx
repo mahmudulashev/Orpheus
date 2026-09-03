@@ -49,7 +49,7 @@ export function Connect() {
                 aria-label={social.label}
                 className="grid size-[50px] place-items-center border border-[color-mix(in_srgb,var(--gold-300)_55%,transparent)] text-[var(--gold-300)] transition-[background-color,border-color,transform] duration-300 hover:-translate-y-[3px] hover:border-[var(--gold-300)] hover:bg-[color-mix(in_srgb,var(--gold-300)_12%,transparent)]"
               >
-                <Icon className="size-[22px]" />
+                <Icon className="size-[24px]" />
               </a>
             </li>
           );

@@ -26,9 +26,8 @@
   --caption-scrim: rgba(20, 20, 20, 0.55);
 
   /* Ambient glows behind the hero */
-  --glow-left: rgba(170, 232, 252, 0.3);
-  --glow-right: rgba(173, 229, 253, 0.26);
-  --glow-bottom: rgba(228, 214, 190, 0.32);
+  --glow-left: rgba(170, 232, 252, 0.42);
+  --glow-right: rgba(173, 229, 253, 0.6);
 
   /* How the hero artwork keys into the page */
   --art-blend: multiply;
@@ -49,9 +48,8 @@
   --hairline: rgba(255, 255, 255, 0.1);
   --caption-scrim: rgba(6, 8, 11, 0.68);
 
-  --glow-left: rgba(61, 90, 135, 0.26);
-  --glow-right: rgba(40, 71, 117, 0.21);
-  --glow-bottom: rgba(70, 54, 26, 0.14);
+  --glow-left: rgba(61, 90, 135, 0.31);
+  --glow-right: rgba(40, 71, 117, 0.46);
 
   --art-blend: screen;
 }

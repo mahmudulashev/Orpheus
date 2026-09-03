@@ -117,7 +117,7 @@ export const banners: BannerContent[] = [
       [{ text: "+500 Greek style" }],
       [{ text: "User avatars", strong: true }],
     ],
-    tracking: { title: "0.059em", subtitle: "0.523em" },
+    tracking: { title: "0.081em", subtitle: "0.523em" },
     cta: { label: "Download", href: "#community" },
     imageDark: "/images/banner-avatars-dark.jpg",
     imageLight: "/images/banner-avatars-light.jpg",

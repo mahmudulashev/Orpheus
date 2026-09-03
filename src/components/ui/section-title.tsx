@@ -17,8 +17,13 @@ export function SectionTitle({
   className,
 }: SectionTitleProps) {
   return (
-    <div className={cn("group flex h-[50px] items-center gap-[13px]", className)}>
-      <h2 className="text-[25px] leading-none font-bold tracking-[0.19em] text-[var(--gold-300)] uppercase">
+    <div
+      className={cn(
+        "flex h-[50px] items-center gap-[10px] md:gap-[13px]",
+        className,
+      )}
+    >
+      <h2 className="text-[17px] leading-none font-bold tracking-[0.1em] whitespace-nowrap text-[var(--gold-300)] uppercase md:text-[25px] md:tracking-[0.19em]">
         {title}
       </h2>
       <span
@@ -27,7 +32,7 @@ export function SectionTitle({
       />
       <Link
         href={href}
-        className="relative text-[20px] leading-none tracking-[0.135em] text-fg-muted uppercase transition-colors duration-300 hover:text-[var(--gold-300)]"
+        className="text-[13px] leading-none tracking-[0.08em] whitespace-nowrap text-fg-muted uppercase transition-colors duration-300 hover:text-[var(--gold-300)] md:text-[20px] md:tracking-[0.135em]"
       >
         {actionLabel}
       </Link>

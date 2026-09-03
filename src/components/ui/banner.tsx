@@ -22,6 +22,8 @@ export function Banner({ banner }: { banner: BannerContent }) {
   const copyVars = {
     "--copy-w": COPY_WIDTH,
     "--copy-x": mediaLeft ? COPY_INSET : "0.07%",
+    "--title-tracking": banner.tracking.title,
+    "--subtitle-tracking": banner.tracking.subtitle,
   } as CSSProperties;
 
   return (
@@ -45,17 +47,11 @@ export function Banner({ banner }: { banner: BannerContent }) {
         style={copyVars}
         className="flex flex-col items-center gap-[26px] px-[24px] py-[40px] text-center md:absolute md:inset-y-0 md:start-[var(--copy-x)] md:w-[var(--copy-w)] md:justify-center md:px-0 md:py-0"
       >
-        <h3
-          style={{ letterSpacing: banner.tracking.title }}
-          className="text-[clamp(24px,2.315vw,40px)] leading-[1.14] font-bold text-[var(--gold-300)] uppercase"
-        >
+        <h3 className="text-[clamp(24px,2.315vw,40px)] leading-[1.14] font-bold tracking-[0.06em] text-[var(--gold-300)] uppercase md:tracking-[var(--title-tracking)]">
           {banner.title}
         </h3>
 
-        <p
-          style={{ letterSpacing: banner.tracking.subtitle }}
-          className="text-[clamp(17px,1.85vw,32px)] leading-[1.5625] font-light text-fg uppercase"
-        >
+        <p className="text-[clamp(17px,1.85vw,32px)] leading-[1.5625] font-light tracking-[0.14em] text-fg uppercase md:tracking-[var(--subtitle-tracking)]">
           {banner.subtitle.map((line, li) => (
             <span key={li} className="block">
               {line.map((token, i) =>

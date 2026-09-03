@@ -37,7 +37,7 @@ export function Works() {
   return (
     <section id="works" className="pt-[80px]">
       <div className="container-page flex flex-wrap items-center justify-between gap-6">
-        <div className="flex items-center gap-[12px]">
+        <div className="order-2 flex items-center gap-[12px] md:order-1">
           <CarouselButton
             direction="prev"
             disabled={!canPrev}
@@ -49,7 +49,11 @@ export function Works() {
             onClick={() => embla?.scrollNext()}
           />
         </div>
-        <SectionTitle title="Recent NFT" href="#works" className="ml-auto" />
+        <SectionTitle
+          title="Recent NFT"
+          href="#works"
+          className="order-1 ml-auto md:order-2"
+        />
       </div>
 
       {/* Full-bleed viewport, padded to the page gutter on the left only. */}
