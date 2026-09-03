@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* next-themes writes `class="dark"` on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens — extracted from the Orpheus Figma file (1728px artboard)
+   --------------------------------------------------------------------------- */
+:root {
+  /* Gold ramp — sampled from the Figma gradients */
+  --gold-100: #f3c572;
+  --gold-200: #ecb759;
+  --gold-300: #e0a845;
+  --gold-400: #d59d39;
+  --gold-500: #c68c24;
+  --gold-600: #bf8318;
+
+  /* Light theme surfaces */
+  --bg: #f5f5f5;
+  --fg: #16181c;
+  --fg-muted: #4c5157;
+  --panel: #e0e0e0;
+  --panel-alt: #e8eaec;
+  --nav-bg: rgba(247, 247, 247, 0.72);
+  --hairline: rgba(22, 24, 28, 0.1);
+  --caption-scrim: rgba(20, 20, 20, 0.55);
+
+  /* Ambient glows behind the hero */
+  --glow-left: rgba(170, 232, 252, 0.3);
+  --glow-right: rgba(173, 229, 253, 0.26);
+  --glow-bottom: rgba(228, 214, 190, 0.32);
+
+  /* How the hero artwork keys into the page */
+  --art-blend: multiply;
+
+  /* Layout */
+  --page-max: 1728px;
+  --gutter: clamp(20px, 6.366vw, 110px);
+  --gutter-nav: clamp(20px, 5.671vw, 98px);
+}
+
+.dark {
+  --bg: #050607;
+  --fg: #ffffff;
+  --fg-muted: rgba(255, 255, 255, 0.82);
+  --panel: #0b0d10;
+  --panel-alt: #0a0d12;
+  --nav-bg: rgba(5, 6, 7, 0.72);
+  --hairline: rgba(255, 255, 255, 0.1);
+  --caption-scrim: rgba(6, 8, 11, 0.68);
+
+  --glow-left: rgba(61, 90, 135, 0.26);
+  --glow-right: rgba(40, 71, 117, 0.21);
+  --glow-bottom: rgba(70, 54, 26, 0.14);
+
+  --art-blend: screen;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-panel: var(--panel);
+  --color-panel-alt: var(--panel-alt);
+  --color-hairline: var(--hairline);
+
+  --color-gold-100: var(--gold-100);
+  --color-gold-200: var(--gold-200);
+  --color-gold-300: var(--gold-300);
+  --color-gold-400: var(--gold-400);
+  --color-gold-500: var(--gold-500);
+  --color-gold-600: var(--gold-600);
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   --------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--gold-300);
+    color: #0b0b0b;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-300);
+    outline-offset: 3px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reusable pieces
+   --------------------------------------------------------------------------- */
+@utility container-page {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility container-nav {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter-nav);
+}
+
+/* Metallic gold used for the display type */
+@utility text-gold-gradient {
+  background-image: linear-gradient(
+    180deg,
+    var(--gold-100) 0%,
+    var(--gold-300) 52%,
+    var(--gold-500) 100%
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+/* Metallic gold used for filled buttons */
+@utility bg-gold-gradient {
+  background-image: linear-gradient(
+    180deg,
+    var(--gold-200) 0%,
+    var(--gold-300) 46%,
+    var(--gold-600) 100%
+  );
+}
+
+/* The hero artwork keys itself into the page background, so no visible seam */
+@utility art-keyed {
+  mix-blend-mode: var(--art-blend);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
