@@ -18,7 +18,7 @@ export function SectionTitle({
 }: SectionTitleProps) {
   return (
     <div className={cn("group flex h-[50px] items-center gap-[22px]", className)}>
-      <h2 className="text-[28px] leading-none font-bold tracking-[0.02em] text-[var(--gold-300)] uppercase">
+      <h2 className="text-[25px] leading-none font-bold tracking-[0.19em] text-[var(--gold-300)] uppercase">
         {title}
       </h2>
       <span
@@ -27,7 +27,7 @@ export function SectionTitle({
       />
       <Link
         href={href}
-        className="relative text-[20px] leading-none tracking-[0.05em] text-fg-muted uppercase transition-colors duration-300 hover:text-[var(--gold-300)]"
+        className="relative text-[20px] leading-none tracking-[0.135em] text-fg-muted uppercase transition-colors duration-300 hover:text-[var(--gold-300)]"
       >
         {actionLabel}
       </Link>

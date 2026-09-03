@@ -5,78 +5,56 @@ import { ChevronDown } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
 import { GoldButton, GoldOutlineButton } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/reveal";
 import { hero } from "@/lib/content";
-
-const group = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-};
-
-const rise = {
-  hidden: { opacity: 0, y: 26 },
-  show: { opacity: 1, y: 0 },
-};
 
 /** Figma: "Header" — 872px tall, copy on the left, keyed artwork on the right. */
 export function Hero() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative">
       <div className="container-page relative min-h-[560px] md:h-[872px]">
-        {/* Artwork — Figma places it at x 761→1617, y 118→872 on a 1728 canvas. */}
+        {/* Artwork — Figma places it at x 760→1618, y 118→873 on a 1728 canvas. */}
         <HeroArt />
 
-        <motion.div
-          variants={group}
-          initial={reduce ? false : "hidden"}
-          animate="show"
-          className="relative z-10 flex max-w-[552px] flex-col pt-[190px] md:absolute md:top-[328px] md:pt-0"
-        >
-          <motion.h1
-            variants={rise}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-semibold text-gold-gradient"
-          >
-            <span className="block text-[clamp(38px,4.17vw,72px)] leading-[1.167] [font-variant:small-caps]">
-              {hero.eyebrow}
-            </span>
-            <span className="block text-[clamp(42px,4.86vw,84px)] leading-[1] tracking-[0.19em] uppercase">
-              {hero.title}
-            </span>
-          </motion.h1>
+        <div className="relative z-10 flex max-w-[552px] flex-col pt-[190px] md:absolute md:top-[328px] md:pt-0">
+          <Reveal immediate delay={0.1}>
+            <h1 className="font-serif font-semibold text-gold-gradient">
+              <span className="block text-[clamp(38px,4.34vw,75px)] leading-[1.12] tracking-[0.052em] [font-variant:small-caps]">
+                {hero.eyebrow}
+              </span>
+              <span className="block text-[clamp(42px,4.86vw,84px)] leading-[1] tracking-[0.315em] uppercase">
+                {hero.title}
+              </span>
+            </h1>
+          </Reveal>
 
-          <motion.p
-            variants={rise}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-[37px] max-w-[552px] text-[clamp(16px,1.16vw,20px)] leading-[2.5] tracking-[0.055em] text-fg-muted"
-          >
-            {hero.body}
-          </motion.p>
+          <Reveal immediate delay={0.22}>
+            <p className="mt-[37px] max-w-[552px] text-[clamp(16px,1.16vw,20px)] leading-[2.5] tracking-[0.092em] text-fg-muted">
+              {hero.body}
+            </p>
+          </Reveal>
 
-          <motion.div
-            variants={rise}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-[37px] flex flex-wrap items-center gap-[56px]"
-          >
-            <GoldOutlineButton
-              href={hero.secondary.href}
-              className="w-[180px]"
-              iconRight={
-                <ChevronDown
-                  className="size-[16px] transition-transform duration-300 group-hover:translate-y-[2px]"
-                  strokeWidth={2}
-                />
-              }
-            >
-              {hero.secondary.label}
-            </GoldOutlineButton>
+          <Reveal immediate delay={0.34}>
+            <div className="mt-[37px] flex flex-wrap items-center gap-[56px]">
+              <GoldOutlineButton
+                href={hero.secondary.href}
+                className="w-[180px]"
+                iconRight={
+                  <ChevronDown
+                    className="size-[16px] transition-transform duration-300 group-hover:translate-y-[2px]"
+                    strokeWidth={2}
+                  />
+                }
+              >
+                {hero.secondary.label}
+              </GoldOutlineButton>
 
-            <GoldButton href={hero.primary.href} className="w-[170px]">
-              {hero.primary.label}
-            </GoldButton>
-          </motion.div>
-        </motion.div>
+              <GoldButton href={hero.primary.href} className="w-[170px]">
+                {hero.primary.label}
+              </GoldButton>
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

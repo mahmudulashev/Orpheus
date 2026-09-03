@@ -31,25 +31,29 @@ export function Banner({ banner }: { banner: BannerContent }) {
           mediaLeft ? "md:order-2" : "md:order-1",
         )}
       >
-        <h3 className="text-[clamp(26px,2.55vw,44px)] leading-[1.14] font-bold tracking-[0.01em] text-[var(--gold-300)] uppercase">
+        <h3 className="text-[clamp(24px,2.2vw,38px)] leading-[1.14] font-bold tracking-[0.16em] text-[var(--gold-300)] uppercase">
           {banner.title}
         </h3>
 
-        <p className="max-w-[706px] text-[clamp(18px,1.85vw,32px)] leading-[1.5] font-light tracking-[0.14em] text-fg uppercase">
-          {banner.subtitle.map((token, i) =>
-            token.strong ? (
-              <strong key={i} className="font-semibold">
-                {token.text}
-              </strong>
-            ) : (
-              <span key={i}>{token.text}</span>
-            ),
-          )}
+        <p className="max-w-[706px] text-[clamp(17px,1.85vw,32px)] leading-[1.52] font-light tracking-[0.34em] text-fg uppercase">
+          {banner.subtitle.map((line, li) => (
+            <span key={li} className="block">
+              {line.map((token, i) =>
+                token.strong ? (
+                  <strong key={i} className="font-semibold">
+                    {token.text}
+                  </strong>
+                ) : (
+                  <span key={i}>{token.text}</span>
+                ),
+              )}
+            </span>
+          ))}
         </p>
 
         <GoldButton
           href={banner.cta.href}
-          className="px-[20px]"
+          className="w-[165px]"
           iconLeft={<Download className="size-[15px]" strokeWidth={2.25} />}
         >
           {banner.cta.label}

@@ -26,10 +26,10 @@ export function Navbar() {
           "bg-[var(--nav-bg)] shadow-[0_1px_0_0_var(--hairline)] backdrop-blur-xl",
       )}
     >
-      <nav className="container-nav flex h-[96px] items-center justify-between">
+      <nav className="container-nav flex h-[96px] items-center justify-between pt-[10px]">
         <Logo />
 
-        <div className="hidden items-center gap-[34px] lg:flex">
+        <div className="hidden items-center gap-[54px] lg:flex">
           {navItems.map((item) => (
             <NavLink key={item.href} href={item.href}>
               {item.label}
@@ -85,7 +85,7 @@ function NavLink({ href, children }: { href: string; children: string }) {
   return (
     <Link
       href={href}
-      className="group relative font-serif text-[20px] leading-none tracking-[0.015em] text-fg [font-variant:small-caps]"
+      className="group relative font-serif text-[20px] leading-none tracking-[0.01em] text-fg [font-variant:small-caps]"
     >
       {children}
       <span className="absolute -bottom-[6px] left-0 h-px w-0 bg-[var(--gold-300)] transition-[width] duration-300 ease-out group-hover:w-full" />

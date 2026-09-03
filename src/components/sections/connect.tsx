@@ -1,11 +1,5 @@
 import type { ComponentType } from "react";
-import {
-  FaDribbble,
-  FaEnvelope,
-  FaInstagram,
-  FaLinkedinIn,
-  FaMedium,
-} from "react-icons/fa6";
+import { FaDribbble, FaEnvelope, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 
 import { connect, socials, type Social } from "@/lib/content";
 
@@ -13,9 +7,20 @@ const icons: Record<Social["id"], ComponentType<{ className?: string }>> = {
   linkedin: FaLinkedinIn,
   dribbble: FaDribbble,
   instagram: FaInstagram,
-  medium: FaMedium,
+  medium: MediumWordmark,
   mail: FaEnvelope,
 };
+
+function MediumWordmark({ className }: { className?: string }) {
+  return (
+    <span
+      aria-hidden
+      className={`font-serif text-[26px] leading-none font-semibold ${className ?? ""}`}
+    >
+      M
+    </span>
+  );
+}
 
 /** Figma: "Let's Connect" — centred sign-off with five 50px social tiles. */
 export function Connect() {
@@ -24,11 +29,11 @@ export function Connect() {
       id="connect"
       className="container-page flex flex-col items-center pt-[165px] pb-[120px] text-center"
     >
-      <h2 className="text-[30px] leading-[1.2] font-bold tracking-[0.02em] text-[var(--gold-300)] uppercase">
+      <h2 className="text-[25px] leading-[1.2] font-bold tracking-[0.166em] text-[var(--gold-300)] uppercase">
         {connect.title}
       </h2>
 
-      <p className="mt-[24px] max-w-[565px] text-[18px] leading-[1.4] tracking-[0.02em] text-fg uppercase">
+      <p className="mt-[24px] max-w-[565px] text-[16px] leading-[1.4] tracking-[0.15em] text-fg uppercase">
         {connect.body}
       </p>
 

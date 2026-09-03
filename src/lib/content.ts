@@ -86,7 +86,8 @@ export type SubtitleToken = { text: string; strong?: boolean };
 export type BannerContent = {
   id: string;
   title: string;
-  subtitle: SubtitleToken[];
+  /** One entry per rendered line — the Figma banners break at fixed points. */
+  subtitle: SubtitleToken[][];
   cta: { label: string; href: string };
   imageDark: string;
   imageLight: string;
@@ -98,9 +99,8 @@ export const banners: BannerContent[] = [
     id: "statue-pack",
     title: "3D Greek Statue Pack",
     subtitle: [
-      { text: "Over " },
-      { text: "200", strong: true },
-      { text: " Greek style sculpture" },
+      [{ text: "Over " }, { text: "200", strong: true }, { text: " Greek style" }],
+      [{ text: "Sculpture" }],
     ],
     cta: { label: "Download", href: "#contribution" },
     imageDark: "/images/banner-statue-dark.jpg",
@@ -111,8 +111,8 @@ export const banners: BannerContent[] = [
     id: "statue-avatars",
     title: "Greek Statue Avatars",
     subtitle: [
-      { text: "+500 Greek style " },
-      { text: "User avatars", strong: true },
+      [{ text: "+500 Greek style" }],
+      [{ text: "User avatars", strong: true }],
     ],
     cta: { label: "Download", href: "#community" },
     imageDark: "/images/banner-avatars-dark.jpg",
